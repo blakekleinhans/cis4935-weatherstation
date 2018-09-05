@@ -1,21 +1,19 @@
 <nav class="col-md-2 d-none d-md-block bg-light sidebar">
-    @if(isset($sidebarOptionsMain))
-        @php
-            var_dump($sidebarOptionsMain);
-        @endphp
-    @endif
     <div class="sidebar-sticky">
-        @if(isset($sidebarOptionsMain) && count($sidebarOptionsMain)>0)
-            <ul class="nav flex-column">
-            @foreach($sidebarOptionsMain as $sidebarOption)
-                <li class="nav-item">
-                    <a class="nav-link active" href="{{$sidebarOption['link']}}">
-                        {{$sidebarOption['name']}} <span class="sr-only">(current)</span>
-                    </a>
-                </li>
-            @endforeach
-            </ul>
-        @endif
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link active" href="#">
+                    Home<span class="sr-only">(current)</span>
+                </a>
+            </li>
+        </ul>
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link active" href="#">
+                    Admin<span class="sr-only">(current)</span>
+                </a>
+            </li>
+        </ul>
         @if(isset($sidebarOptionsSensors) && count($sidebarOptionsSensors)>0)
         <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
             <span>Saved reports</span>
