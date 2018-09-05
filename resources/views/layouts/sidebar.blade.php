@@ -2,15 +2,15 @@
     <div class="sidebar-sticky">
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a class="nav-link active" href="#">
-                    Home<span class="sr-only">(current)</span>
+                <a class="nav-link {{ Request::is('/') ? 'active' : null }}" href="#">
+                    Home<span class="sr-only"></span>
                 </a>
             </li>
         </ul>
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a class="nav-link active" href="#">
-                    Admin<span class="sr-only">(current)</span>
+                <a class="nav-link {{ Request::is('/admin') ? 'active' : null }}" href="#">
+                    Admin<span class="sr-only"></span>
                 </a>
             </li>
         </ul>
