@@ -126,7 +126,7 @@ class APIController extends Controller
 
     // Handle unknown sensors
     protected function verifySensors($ids) {
-        $ids;
+        return $ids;
     }
 
     // Use sensor naming convention to derive sensor id
