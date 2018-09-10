@@ -49,7 +49,7 @@ class APIController extends Controller
     // Handle 'stationReadings' action
     protected function actionStationReadings($inputs) {
         // Verify parameters
-        if($this->checkVars(['station_id'], $inputs)) {
+        if($this->checkVars(['stationId'], $inputs)) {
             // Clean Up Inputs
             $station = $this->verifyStation($inputs['station_id']);
             $readings = $this->verifyReadings($inputs);
@@ -95,10 +95,23 @@ class APIController extends Controller
         foreach($readings as $id => $reading) {
             DB::table('sensor_readings')->insert([
                 'batch_id'  => $batch_id,
-                'sensor_id' => $station['id'],
-                'value'     => $readings,
+                'sensor_id' => $id,
+                'value'     => $reading,
             ]);
         }
+    }
+
+    protected function verifyReadings($readings) {
+        // TODO: Make array of key values
+        $keys = array_keys($readings);
+        $verified_sensors = $this->verifySensors($keys);
+
+        $data = [];
+        foreach($verified_sensors as $sensor) {
+            $data[$this->sensorNameToId($sensor)] = $readings[$sensor];
+        }
+
+        return $data;
     }
 
     // Handle unknown stations
@@ -113,6 +126,13 @@ class APIController extends Controller
 
     // Handle unknown sensors
     protected function verifySensors($ids) {
-
+        $ids;
     }
+
+    // Use sensor naming convention to derive sensor id
+    // TODO: Use database to derive relative sensor_id to station
+    protected function sensorNameToId($name) {
+        return str_replace('sensor_', '', $name);
+    }
+
 }
