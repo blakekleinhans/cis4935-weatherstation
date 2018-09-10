@@ -20,3 +20,6 @@ Route::get('/', 'DashboardController@index');
 Route::get('/home', function() {
     return view('home');
 });
+
+
+Route::post('/api', 'APIController@index');

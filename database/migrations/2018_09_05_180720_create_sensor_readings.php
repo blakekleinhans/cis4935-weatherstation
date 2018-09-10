@@ -13,7 +13,15 @@ class CreateSensorReadings extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('sensor_readings', function (Blueprint $table) {
+            $table->unsignedInteger('batch_id');
+            $table->unsignedInteger('station_id');
+            $table->float('value', 8, 4);
+
+            // Handle Foreign Key
+            $table->foreign('batch_id')->references('id')->on('batch_details');
+            $table->foreign('sensor_id')->references('id')->on('sensor_details');
+        });
     }
 
     /**
@@ -23,6 +31,6 @@ class CreateSensorReadings extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('sensor_readings');
     }
 }

@@ -13,7 +13,14 @@ class CreateSensorDetails extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('sensor_details', function (Blueprint $table) {
+            $table->increments('id')->index();
+            $table->unsignedInteger('station_id');
+            $table->string('name');
+
+            // Handle Foreign Key
+            $table->foreign('station_id')->references('id')->on('station_details');
+        });
     }
 
     /**
@@ -23,6 +30,6 @@ class CreateSensorDetails extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('sensor_details');
     }
 }

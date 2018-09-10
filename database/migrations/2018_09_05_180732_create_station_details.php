@@ -13,7 +13,10 @@ class CreateStationDetails extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('station_details', function (Blueprint $table) {
+            $table->increments('id')->index();
+            $table->string('name');
+        });
     }
 
     /**
@@ -23,6 +26,6 @@ class CreateStationDetails extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('station_details');
     }
 }
