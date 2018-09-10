@@ -96,7 +96,7 @@ class APIController extends Controller
         foreach($readings as $id => $reading) {
             DB::table('sensor_readings')->insert([
                 'batch_id'  => $batch_id,
-                'sensor_id' => $id,
+                'station_id' => $station,
                 'value'     => $reading,
             ]);
         }
@@ -123,6 +123,8 @@ class APIController extends Controller
 
         // Store new station
 
+
+        return $id;
     }
 
     // Handle unknown sensors
