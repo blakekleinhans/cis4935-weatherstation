@@ -19,7 +19,8 @@ class CreateSensorDetails extends Migration
             $table->string('name');
 
             // Handle Foreign Key
-            $table->foreign('station_id')->references('id')->on('station_details');
+            // TODO: Correct
+            //$table->foreign('station_id')->references('id')->on('station_details');
         });
     }
 
