@@ -19,8 +19,9 @@ class CreateSensorReadings extends Migration
             $table->float('value', 8, 4);
 
             // Handle Foreign Key
-            $table->foreign('batch_id')->references('id')->on('batch_details');
-            $table->foreign('sensor_id')->references('id')->on('sensor_details');
+            // TODO: Correct
+            //$table->foreign('batch_id')->references('id')->on('batch_details');
+            //$table->foreign('sensor_id')->references('id')->on('sensor_details');
         });
     }
 
