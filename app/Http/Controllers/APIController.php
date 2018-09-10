@@ -51,7 +51,7 @@ class APIController extends Controller
         // Verify parameters
         if($this->checkVars(['stationId'], $inputs)) {
             // Clean Up Inputs
-            $station = $this->verifyStation($inputs['station_id']);
+            $station = $this->verifyStation($inputs['stationId']);
             $readings = $this->verifyReadings($inputs);
 
             // Store results of saveReadings for return
