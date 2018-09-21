@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Reading;
+use App\Sensor;
 use App\Http\Controllers\Controller;
 
 class DashboardController extends Controller
@@ -16,10 +18,47 @@ class DashboardController extends Controller
     public function index()
     {
         $data = [
-            'sidebarOptionsMain' => [
-                ['name' => 'Current Conditions', 'link' => url('/')]
-            ]
+          'sidebarOptionsMain' => $this->sidebarOptionsMain,
+	        'sensors' => $this->sidebarOptions(),
         ];
         return view('dashboard.home', $data);
+    }
+
+    /** Show the dashboard for the given sensor
+     * @param int $id
+     * @return Response */
+    public function sensor($id) {
+    	$sensorData = Reading::where('sensor_id', $id)->get()->all();
+    	/*if(count($sensorData) == 0) {
+    		return 'No Data for Sensor ' . $id;
+	    }*/
+	    $data = [
+	    	'readings' => $sensorData,
+		    'sensor_id' => $id,
+		    'sidebarOptionsMain' => $this->sidebarOptionsMain,
+		    'sensors' => $this->sidebarOptions(),
+	    ];
+    	return view('dashboard.sensor', $data);
+    }
+
+    /** Links for the sidebar
+     * @var array */
+    protected $sidebarOptionsMain = [
+    	['name' => 'Current Conditions', 'link' => '/'],
+			['name' => 'Station Info', 'link' => 'station'],
+    ];
+
+    /** Build links for active sensors */
+    protected function sidebarOptions() {
+			$activeSensors = Sensor::where('is_active', true)->get()->all();
+			$sidebarOptionsSensors = [];
+			foreach($activeSensors as $activeSensor) {
+				$sensorInfo = [
+					'name' => $activeSensor->name,
+					'link' => 'sensor/' . $activeSensor->id,
+				];
+				array_push($sidebarOptionsSensors, $sensorInfo);
+			}
+			return $sidebarOptionsSensors;
     }
 }

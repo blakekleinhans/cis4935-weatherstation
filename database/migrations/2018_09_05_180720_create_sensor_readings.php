@@ -16,6 +16,7 @@ class CreateSensorReadings extends Migration
         Schema::create('sensor_readings', function (Blueprint $table) {
             $table->unsignedInteger('batch_id');
             $table->unsignedInteger('station_id');
+            $table->unsignedInteger('sensor_id');
             $table->float('value', 8, 4);
 
             // Handle Foreign Key

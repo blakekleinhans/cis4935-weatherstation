@@ -8,7 +8,7 @@ if(!isset($sidebartOptionsSensors)) {
 @endphp
 
 
-@extends('layouts.app', ['sidebarOptionsMain' => $sidebarOptionsMain, 'sidebarOptionsSensors' => $sidebarOptionsSensors])
+@extends('layouts.app', ['sidebarOptionsMain' => $sidebarOptionsMain, 'sidebarOptionsSensors' => $sensors])
 
 @section('title', 'Home')
 
