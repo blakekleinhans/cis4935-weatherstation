@@ -14,7 +14,11 @@ if(!isset($sidebartOptionsSensors)) {
 
 @section('content')
     <br>
-    <h3>{{ $readings[0]->sensor->name }} Readings</h3>
+    @if(isset($sensor->name))
+        <h3>{{ $sensor->name }} Readings</h3>
+    @else
+        <h3>Error: Sensor Name not Found</h3>
+    @endif
     @if(isset($readings) && count($readings)>0)
         <table class="table">
             <thead>
