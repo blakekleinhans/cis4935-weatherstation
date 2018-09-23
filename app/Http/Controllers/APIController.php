@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Batch;
 use App\User;
+use App\Reading;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 
 class APIController extends Controller
@@ -86,20 +89,21 @@ class APIController extends Controller
 
     // Store all sensor readings
     protected function saveReadings($station, $readings) {
-        // Make batch
-        // TODO: Implement
-
         // TODO: Properly assign
-        $batch_id = 1;
+        $station_id = 1;
+        // Make Batch
+        $batch = new Batch;
+        $batch->station_id = $station_id;
+        $batch->save();
 
         // Save sensor readings to database
-        foreach($readings as $id => $reading) {
-            DB::table('sensor_readings')->insert([
-                'batch_id'   => intval($batch_id),
-                'station_id' => intval($station),
-                'sensor_id'  => intval($id),
-                'value'      => floatval($reading),
-            ]);
+        foreach($readings as $sensor_id => $value) {
+            $reading = new  Reading;
+            $reading->batch_id = $batch->id;
+            $reading->station_id = $station_id;
+            $reading->sensor_id = intval($sensor_id);
+            $reading->value = floatval($value);
+            $reading->save();
         }
     }
 

@@ -14,7 +14,7 @@ class CreateBatchDetails extends Migration
     public function up()
     {
         Schema::create('batch_details', function (Blueprint $table) {
-            $table->increments('batch_id');
+            $table->increments('id');
             $table->unsignedInteger('station_id');
             $table->timestamp('time')->useCurrent();
         });

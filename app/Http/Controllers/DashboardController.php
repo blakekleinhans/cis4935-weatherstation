@@ -28,12 +28,12 @@ class DashboardController extends Controller
      * @param int $id
      * @return Response */
     public function sensor($id) {
-    	$sensorData = Reading::where('sensor_id', $id)->get()->all();
+    	$sensorReadings = Reading::where('sensor_id', $id)->get()->all();
     	/*if(count($sensorData) == 0) {
     		return 'No Data for Sensor ' . $id;
 	    }*/
 	    $data = [
-	    	'readings' => $sensorData,
+	    	'readings' => $sensorReadings,
 		    'sensor_id' => $id,
 		    'sidebarOptionsMain' => $this->sidebarOptionsMain,
 		    'sensors' => $this->sidebarOptions(),
@@ -45,7 +45,7 @@ class DashboardController extends Controller
      * @var array */
     protected $sidebarOptionsMain = [
     	['name' => 'Current Conditions', 'link' => '/'],
-			['name' => 'Station Info', 'link' => 'station'],
+        ['name' => 'Station Info', 'link' => 'station'],
     ];
 
     /** Build links for active sensors */

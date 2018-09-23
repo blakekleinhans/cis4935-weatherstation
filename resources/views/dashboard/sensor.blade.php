@@ -20,13 +20,15 @@ if(!isset($sidebartOptionsSensors)) {
             <thead>
             <tr>
                 <th scope="col">Batch</th>
+                <th scope="col">Time</th>
                 <th scope="col">Value</th>
             </tr>
             </thead>
         @foreach($readings as $reading)
             <tr>
-                <td>{{ $reading['batch_id'] }}</td>
-                <td>{{ $reading['value'] }}</td>
+                <td>{{ $reading->batch_id }}</td>
+                <td>{{ $reading->batch->time }}</td>
+                <td>{{ $reading->value }}</td>
             </tr>
         @endforeach
         </table>

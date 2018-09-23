@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Batch;
 use Illuminate\Database\Eloquent\Model;
 
 class Reading extends Model
@@ -20,9 +21,9 @@ class Reading extends Model
 	 *  - Model Relationships - - - - - - - - - - - - - - - - - -
 	 *  - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 	public function batch() {
-		return $this->belongsTo('App\Models\Batch');
+		return $this->belongsTo('App\Batch');
 	}
 	public function sensor() {
-		return $this->belongsTo('App\Models\Sensor');
+		return $this->belongsTo('App\Sensor');
 	}
 }
