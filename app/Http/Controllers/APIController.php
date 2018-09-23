@@ -50,9 +50,9 @@ class APIController extends Controller
     // Handle 'stationReadings' action
     protected function actionStationReadings($inputs) {
         // Verify parameters
-        if($this->checkVars(['stationId'], $inputs)) {
+        if($this->checkVars(['station_id'], $inputs)) {
             // Clean Up Inputs
-            $station = $this->verifyStation($inputs['stationId']);
+            $station = $this->verifyStation($inputs['station_id']);
             $readings = $this->verifyReadings($inputs);
 
             // Store results of saveReadings for return
@@ -95,9 +95,10 @@ class APIController extends Controller
         // Save sensor readings to database
         foreach($readings as $id => $reading) {
             DB::table('sensor_readings')->insert([
-                'batch_id'  => $batch_id,
-                'station_id' => $station,
-                'value'     => $reading,
+                'batch_id'   => intval($batch_id),
+                'station_id' => intval($station),
+                'sensor_id'  => intval($id),
+                'value'      => floatval($reading),
             ]);
         }
     }
@@ -111,7 +112,6 @@ class APIController extends Controller
         foreach($verified_sensors as $sensor) {
             $data[$this->sensorNameToId($sensor)] = $readings[$sensor];
         }
-
         return $data;
     }
 
@@ -122,7 +122,6 @@ class APIController extends Controller
         // Request station details
 
         // Store new station
-
 
         return $id;
     }
