@@ -20,6 +20,6 @@ class Sensor extends Model
 	 *  - Model Relationships - - - - - - - - - - - - - - - - - -
 	 *  - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 	public function readings() {
-		return $this->hasMany('App\Models\Reading');
+		return $this->hasMany('App\Reading');
 	}
 }

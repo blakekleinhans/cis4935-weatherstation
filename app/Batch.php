@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Reading;
 use Illuminate\Database\Eloquent\Model;
 
 class Batch extends Model
@@ -20,6 +21,6 @@ class Batch extends Model
 	 *  - Model Relationships - - - - - - - - - - - - - - - - - -
 	 *  - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 	public function readings() {
-		return $this->hasMany('App\Models\Reading');
+		return $this->hasMany('App\Reading');
 	}
 }

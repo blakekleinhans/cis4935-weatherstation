@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Batch;
 use App\User;
 use App\Reading;
 use App\Sensor;
@@ -18,8 +19,9 @@ class DashboardController extends Controller
     public function index()
     {
         $data = [
-          'sidebarOptionsMain' => $this->sidebarOptionsMain,
-	        'sensors' => $this->sidebarOptions(),
+            'lastBatch' => Batch::all()->sortByDesc('id')->first(),
+            'sidebarOptionsMain' => $this->sidebarOptionsMain,
+            'sensors' => $this->sidebarOptions(),
         ];
         return view('dashboard.home', $data);
     }
@@ -45,7 +47,7 @@ class DashboardController extends Controller
      * @var array */
     protected $sidebarOptionsMain = [
     	['name' => 'Current Conditions', 'link' => '/'],
-        ['name' => 'Station Info', 'link' => 'station'],
+        //['name' => 'Station Info', 'link' => 'station'],
     ];
 
     /** Build links for active sensors */
