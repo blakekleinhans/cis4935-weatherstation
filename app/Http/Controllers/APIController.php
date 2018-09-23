@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Batch;
 use App\User;
 use App\Reading;
+use App\Sensor;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
@@ -132,7 +133,14 @@ class APIController extends Controller
 
     // Handle unknown sensors
     protected function verifySensors($ids) {
-        return $ids;
+        $data = [];
+        foreach($ids as $id) {
+            $sensor = Sensor::where('id', str_replace('sensor_','',$id))->first();
+            if($sensor) {
+                array_push($data, $id);
+            }
+        }
+        return $data;
     }
 
     // Use sensor naming convention to derive sensor id
