@@ -14,7 +14,7 @@ if(!isset($sidebartOptionsSensors)) {
 
 @section('content')
     <br>
-    <h3>Sensor {{ $sensor_id }}</h3>
+    <h3>{{ $readings[0]->sensor->name }} Readings</h3>
     @if(isset($readings) && count($readings)>0)
         <table class="table">
             <thead>
