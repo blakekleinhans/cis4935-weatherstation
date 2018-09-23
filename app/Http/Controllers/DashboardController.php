@@ -36,7 +36,7 @@ class DashboardController extends Controller
 	    }*/
 	    $data = [
 	    	'readings' => $sensorReadings,
-		    'sensor' => Sensor::where('id', $id),
+		    'sensor' => Sensor::where('id', $id)->get()->first(),
 		    'sidebarOptionsMain' => $this->sidebarOptionsMain,
 		    'sensors' => $this->sidebarOptions(),
 	    ];
