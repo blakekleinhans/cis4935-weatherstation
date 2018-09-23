@@ -18,3 +18,4 @@ Route::get('/home', function() {
 
 
 Route::post('/api', 'APIController@index');
+Route::get('/api', 'APIController@get');

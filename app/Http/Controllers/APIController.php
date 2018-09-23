@@ -21,9 +21,6 @@ class APIController extends Controller
      */
     public function index(Request $request)
     {
-        // Sanitize and save raw data
-
-
         // Handle legitimate requests
         $inputs = $request->input();
         // TODO: Compare against input keys
@@ -42,14 +39,23 @@ class APIController extends Controller
                 default:
                     $result = "Invalid Action";
             }
-
         } else {
             $result = "Invalid Parameters!";
         }
-
         return $result;
     }
 
+    // TODO: Update to allow request for specific station/sensors
+    public function get() {
+        // TODO: Use values from request
+        $sensors = [1,2,3,4,5,6];
+        $data = [];
+        foreach($sensors as $sensorId) {
+            $sensor = Sensor::where('id', $sensorId)->get()->first();
+            $data['sensor_'.$sensorId] = $sensor->readings->sortByDesc('batch_id')->first()->value;
+        }
+        return $data;
+    }
 
     // Handle 'stationReadings' action
     protected function actionStationReadings($inputs) {
