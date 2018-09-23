@@ -13,13 +13,6 @@
                 @endif
             @endforeach
         </ul>
-        <ul class="nav flex-column">
-            <li class="nav-item">
-                <a class="nav-link {{ Request::is('/admin') ? 'active' : null }}" href="#">
-                    Admin<span class="sr-only"></span>
-                </a>
-            </li>
-        </ul>
         @endif
         @if(isset($sidebarOptionsSensors) && count($sidebarOptionsSensors)>0)
         <hr>
