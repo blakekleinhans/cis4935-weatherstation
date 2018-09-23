@@ -17,8 +17,8 @@ if(!isset($sidebartOptionsSensors)) {
     <br>
     <h3>Current Conditions</h3>
 
-    <span>Last Update: {{ $lastBatch->time }}</span>
     @if(isset($lastBatch->readings) && count($lastBatch->readings)>0)
+    <span>Last Update: {{ $lastBatch->time }}</span>
         <table class="table">
             <thead>
             <tr>
