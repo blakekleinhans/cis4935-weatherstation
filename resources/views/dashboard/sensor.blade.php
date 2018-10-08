@@ -34,6 +34,9 @@ if(!isset($sidebartOptionsSensors)) {
             </tr>
         @endforeach
         </table>
+        <span>
+            {{ $readings->links() }}
+        </span>
     @else
         <p>No Readings Found</p>
     @endif
