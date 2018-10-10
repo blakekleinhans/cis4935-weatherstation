@@ -19,6 +19,7 @@ if(!isset($sidebartOptionsSensors)) {
     @else
         <h3>Error: Sensor Name not Found</h3>
     @endif
+    @include('charts.line')
     @if(isset($readings) && count($readings)>0)
         <table class="table">
             <thead>
