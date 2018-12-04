@@ -23,4 +23,11 @@ class Batch extends Model
 	public function readings() {
 		return $this->hasMany('App\Reading');
 	}
+
+	/** - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+	 *  - Model Functions - - - - - - - - - - - - - - - - - - - -
+	 *  - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+	public function getEST() {
+		return $this->time;
+	}
 }
