@@ -24,7 +24,11 @@ if(!isset($sidebartOptionsSensors)) {
         <script>
             var ctx = document.getElementById("myChart").getContext('2d');
             var myChart = new Chart(ctx, {
-                type: 'line',
+                @if ($sensor->name == 'Wind Direction')
+                    type: 'bar',
+                @else
+                    type: 'line',
+                @endif
                 data: {
                     labels: [
                         @for ($i = count($readings)-1; $i >= 0; $i--)
