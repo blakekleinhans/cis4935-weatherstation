@@ -29,7 +29,7 @@ if(!isset($sidebartOptionsSensors)) {
             </thead>
         @foreach($readings as $reading)
             <tr>
-                <td>{{ $reading->batch->getEST()  }}</td>
+                <td>{{ $reading->batch->getEST() }}</td>
                 <td>{{ $reading->value }}</td>
             </tr>
         @endforeach
