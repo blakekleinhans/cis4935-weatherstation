@@ -27,16 +27,16 @@ if(!isset($sidebartOptionsSensors)) {
                 type: 'line',
                 data: {
                     labels: [
-                        @foreach($readings as $reading)
-                            '{{ date_format(date_create_from_format("Y-m-d H:i:s", $reading->batch->getEST()),'g:i a') }}',
-                        @endforeach
+                        @for ($i = count($readings)-1; $i >= 0; $i--)
+                            '{{ date_format(date_create_from_format("Y-m-d H:i:s", $readings[$i]->batch->getEST()),'g:i a') }}',
+                        @endfor
                     ],
                     datasets: [{
                         label: '{{ $sensor->name }}',
                         data: [
-                            @foreach($readings as $reading)
-                                '{{ $reading->value }}',
-                            @endforeach
+                            @for ($i = count($readings)-1; $i >= 0; $i--)
+                                '{{ $readings[$ii]->value }}',
+                            @endfor
                         ],
                     }]
                 },
