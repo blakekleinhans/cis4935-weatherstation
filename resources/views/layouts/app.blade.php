@@ -9,6 +9,8 @@
 
     <link href = {{ asset("css/bootstrap.min.css") }} rel="stylesheet" />
     <link href = {{ asset("css/dashboard.css") }} rel="stylesheet" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 </head>
 <body>
 @include('layouts.navbar')

@@ -20,6 +20,31 @@ if(!isset($sidebartOptionsSensors)) {
         <h3>Error: Sensor Name not Found</h3>
     @endif
     @if(isset($readings) && count($readings)>0)
+        <canvas id="myChart" width="400" height="400"></canvas>
+        <script>
+            var ctx = document.getElementById("myChart").getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20'],
+                    datasets: [{
+                        label: '{{ $sensor->name }}',
+                        data: [
+                            @foreach($readings as $reading)
+                                {{ $reading->value }},
+                            @endforeach
+                        ],
+                    }]
+                },
+                options: {
+                    elements: {
+                        line: {
+                            tension: 0, // disables bezier curves
+                        }
+                    }
+                }
+            });
+        </script>
         <table class="table">
             <thead>
             <tr>
