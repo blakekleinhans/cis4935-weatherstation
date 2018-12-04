@@ -55,7 +55,7 @@ if(!isset($sidebartOptionsSensors)) {
         @foreach($readings as $reading)
             <tr>
                 <td>{{ $reading->batch->getEST() }}</td>
-                <td>{{ $reading->value }}</td>
+                <td>{{ $reading->formattedValue }}</td>
             </tr>
         @endforeach
         </table>

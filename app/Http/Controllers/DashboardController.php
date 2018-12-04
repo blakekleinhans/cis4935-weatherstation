@@ -24,7 +24,7 @@ class DashboardController extends Controller
             'sensors' => $this->sidebarOptions(),
         ];
         foreach($data['lastBatch']->readings as $reading) {
-        	$reading->value = $this->formatReading($reading);
+        	$reading->formattedValue = $this->formatReading($reading);
         }
         return view('dashboard.home', $data);
     }
@@ -38,7 +38,7 @@ class DashboardController extends Controller
     		return 'No Data for Sensor ' . $id;
 	    }*/
     	foreach($sensorReadings as $reading) {
-    		$reading->value = $this->formatReading($reading);
+    		$reading->formattedValue = $this->formatReading($reading);
 	    }
 	    $data = [
 	    	'readings' => $sensorReadings,
