@@ -44,6 +44,9 @@ if(!isset($sidebartOptionsSensors)) {
                 }
             });
         </script>
+        <span>
+            {{ $readings->links() }}
+        </span>
         <table class="table">
             <thead>
             <tr>
