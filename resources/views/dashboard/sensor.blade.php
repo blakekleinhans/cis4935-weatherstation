@@ -31,7 +31,7 @@ if(!isset($sidebartOptionsSensors)) {
                         label: '{{ $sensor->name }}',
                         data: [
                             @foreach($readings as $reading)
-                                {{ $reading->value }},
+                                '{{ $reading->value }}',
                             @endforeach
                         ],
                     }]
