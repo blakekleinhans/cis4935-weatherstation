@@ -28,7 +28,7 @@ if(!isset($sidebartOptionsSensors)) {
                 data: {
                     labels: [
                         @foreach($readings as $reading)
-                            '{{ date_format(date("Y-m-d H:i:s", strtotime($reading->batch->getEST())),'g:i a') }}',
+                            '{{ date_format(strtotime($reading->batch->getEST()),'g:i a') }}',
                         @endforeach
                     ],
                     datasets: [{
