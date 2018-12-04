@@ -26,7 +26,11 @@ if(!isset($sidebartOptionsSensors)) {
             var myChart = new Chart(ctx, {
                 type: 'line',
                 data: {
-                    labels: ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20'],
+                    labels: [
+                        @foreach($readings as $reading)
+                            '{{ date_format($reading->batch->getEST(),'g:i a') }}',
+                        @endforeach
+                    ],
                     datasets: [{
                         label: '{{ $sensor->name }}',
                         data: [
@@ -37,11 +41,6 @@ if(!isset($sidebartOptionsSensors)) {
                     }]
                 },
                 options: {
-                    elements: {
-                        line: {
-                            tension: 0, // disables bezier curves
-                        }
-                    }
                 }
             });
         </script>
