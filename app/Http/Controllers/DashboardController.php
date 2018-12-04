@@ -30,7 +30,7 @@ class DashboardController extends Controller
      * @param int $id
      * @return Response */
     public function sensor($id) {
-    	$sensorReadings = Reading::where('sensor_id', $id)->sortByDesc('id')->paginate(20);
+    	$sensorReadings = Reading::where('sensor_id', $id)->orderBy('id', 'desc')->paginate(20);
     	/*if(count($sensorData) == 0) {
     		return 'No Data for Sensor ' . $id;
 	    }*/
