@@ -74,24 +74,25 @@ class DashboardController extends Controller
      * @param Reading $reading
      * @return String */
     protected function formatReading(Reading $reading) {
+    	$reading->formattedValue = $reading->value . '';
 	    switch($reading->sensor['name']) {
 		    case 'Temperature':
 			    $reading->formattedValue = ($reading->value * (9/5)) + 32 . '°F';
 			    break;
 		    case 'Wind Speed':
-			    $reading->formattedValue .= ' mph';
+			    $reading->formattedValue = ' mph';
 			    break;
 		    case 'Pressure':
-			    $reading->formattedValue .= ' millibar';
+			    $reading->formattedValue = ' millibar';
 			    break;
 		    case 'Humidity':
-			    $reading->formattedValue .= '%';
+			    $reading->formattedValue = '%';
 			    break;
 		    case "Wind Direction":
 			    // Switch for Direction
 			    break;
 		    case "Rainfall":
-			    $reading->formattedValue .= ' in';
+			    $reading->formattedValue = ' in';
 			    break;
 		    default:
 			    break;
