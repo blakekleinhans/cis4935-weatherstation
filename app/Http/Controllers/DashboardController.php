@@ -24,30 +24,8 @@ class DashboardController extends Controller
             'sensors' => $this->sidebarOptions(),
         ];
         foreach($data['lastBatch']->readings as $reading) {
-        	switch($reading->sensor['name']) {
-		        case 'Temperature':
-		        	$reading->value = ($reading->value * (9/5)) + 32 . '°F';
-					break;
-		        case 'Wind Speed':
-		        	$reading->value .= ' mph';
-		        	break;
-		        case 'Pressure':
-		        	$reading->value .= ' millibar';
-		        	break;
-		        case 'Humidity':
-		        	$reading->value .= '%';
-		        	break;
-		        case "Wind Direction":
-		        	// Switch for Direction
-		        	break;
-		        case "Rainfall":
-		        	$reading->value .= ' in';
-		        	break;
-		        default:
-		        	break;
-	        }
+        	$reading->value = $this->formatReading($reading);
         }
-
         return view('dashboard.home', $data);
     }
 
@@ -59,6 +37,9 @@ class DashboardController extends Controller
     	/*if(count($sensorData) == 0) {
     		return 'No Data for Sensor ' . $id;
 	    }*/
+    	foreach($sensorReadings as $reading) {
+    		$reading->value = $this->formatReading($reading);
+	    }
 	    $data = [
 	    	'readings' => $sensorReadings,
 		    'sensor' => Sensor::where('id', $id)->get()->first(),
@@ -87,5 +68,34 @@ class DashboardController extends Controller
 				array_push($sidebarOptionsSensors, $sensorInfo);
 			}
 			return $sidebarOptionsSensors;
+    }
+
+    /** Format Reading Values
+     * @param Reading $reading
+     * @return String */
+    protected function formatReading(Reading $reading) {
+	    switch($reading->sensor['name']) {
+		    case 'Temperature':
+			    $reading->value = ($reading->value * (9/5)) + 32 . '°F';
+			    break;
+		    case 'Wind Speed':
+			    $reading->value .= ' mph';
+			    break;
+		    case 'Pressure':
+			    $reading->value .= ' millibar';
+			    break;
+		    case 'Humidity':
+			    $reading->value .= '%';
+			    break;
+		    case "Wind Direction":
+			    // Switch for Direction
+			    break;
+		    case "Rainfall":
+			    $reading->value .= ' in';
+			    break;
+		    default:
+			    break;
+	    }
+	    return $reading->value;
     }
 }
