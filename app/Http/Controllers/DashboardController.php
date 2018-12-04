@@ -32,7 +32,7 @@ class DashboardController extends Controller
 		        	$reading->value .= ' mph';
 		        	break;
 		        case 'Pressure':
-		        	$reading->value .= ' atm';
+		        	$reading->value .= ' millibar';
 		        	break;
 		        case 'Humidity':
 		        	$reading->value .= '%';
