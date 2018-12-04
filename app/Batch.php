@@ -28,6 +28,6 @@ class Batch extends Model
 	 *  - Model Functions - - - - - - - - - - - - - - - - - - - -
 	 *  - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 	public function getEST() {
-		return $this->time;
+		return $this->time + 5;
 	}
 }
