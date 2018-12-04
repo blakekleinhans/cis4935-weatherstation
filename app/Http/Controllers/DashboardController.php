@@ -24,7 +24,6 @@ class DashboardController extends Controller
             'sensors' => $this->sidebarOptions(),
         ];
         foreach($data['lastBatch']->readings as $reading) {
-	        $reading->value = number_format($reading->value, 2);
 	        if($reading->sensor['name'] == 'Temperature') {
 		        $reading->value = ($reading->value * (9/5)) + 32;
 	        }
@@ -42,7 +41,6 @@ class DashboardController extends Controller
     		return 'No Data for Sensor ' . $id;
 	    }*/
     	foreach($sensorReadings as $reading) {
-    		$reading->value = number_format($reading->value, 2);
     		if($reading->sensor['name'] == 'Temperature') {
 			    $reading->value = ($reading->value * (9/5)) + 32;
 		    }
@@ -82,7 +80,7 @@ class DashboardController extends Controller
      * @param Reading $reading
      * @return String */
     protected function formatReading(Reading $reading) {
-    	$reading->formattedValue = $reading->value . '';
+    	$reading->formattedValue = number_format($reading->value, 2) . '';
 	    switch($reading->sensor['name']) {
 		    case 'Temperature':
 			    $reading->formattedValue .= '°F';
