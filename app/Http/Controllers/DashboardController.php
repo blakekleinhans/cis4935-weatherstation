@@ -23,6 +23,31 @@ class DashboardController extends Controller
             'sidebarOptionsMain' => $this->sidebarOptionsMain,
             'sensors' => $this->sidebarOptions(),
         ];
+        foreach($data['lastBatch']->readings as $reading) {
+        	switch($reading->sensor['name']) {
+		        case 'Temperature':
+		        	$reading->value = ($reading->value * (9/5)) + 32 . '°F';
+					break;
+		        case 'Wind Speed':
+		        	$reading->value .= ' mph';
+		        	break;
+		        case 'Pressure':
+		        	$reading->value .= ' atm';
+		        	break;
+		        case 'Humidity':
+		        	$reading->value .= '%';
+		        	break;
+		        case "Wind Direction":
+		        	// Switch for Direction
+		        	break;
+		        case "Rainfall":
+		        	$reading->value .= ' in';
+		        	break;
+		        default:
+		        	break;
+	        }
+        }
+
         return view('dashboard.home', $data);
     }
 
