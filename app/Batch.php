@@ -28,7 +28,7 @@ class Batch extends Model
 	 *  - Model Functions - - - - - - - - - - - - - - - - - - - -
 	 *  - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 	public function getEST() {
-		$est = date("Y-m-d H:i:s", strtotime($this->time . ' +5 hours'));
+		$est = date("Y-m-d H:i:s", strtotime($this->time . ' -5 hours'));
 		return $est;
 	}
 }
