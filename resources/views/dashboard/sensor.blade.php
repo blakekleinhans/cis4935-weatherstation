@@ -20,7 +20,7 @@ if(!isset($sidebartOptionsSensors)) {
         <h3>Error: Sensor Name not Found</h3>
     @endif
     @if(isset($readings) && count($readings)>0)
-        <canvas id="myChart" width="200" height="200"></canvas>
+        <canvas id="myChart" width="200" height="100"></canvas>
         <script>
             var ctx = document.getElementById("myChart").getContext('2d');
             var myChart = new Chart(ctx, {
