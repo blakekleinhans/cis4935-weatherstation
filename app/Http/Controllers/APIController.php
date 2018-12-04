@@ -52,7 +52,7 @@ class APIController extends Controller
         $data = [];
         foreach($sensors as $sensorId) {
             $sensor = Sensor::where('id', $sensorId)->get()->first();
-            $data['sensor_'.$sensorId] = $sensor->readings->sortByDesc('batch_id')->first()->value;
+            $data['sensor_'.$sensorId] = $sensor->readings->sortByAsc('batch_id')->first()->value;
         }
         return $data;
     }
