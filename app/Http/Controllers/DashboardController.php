@@ -95,7 +95,57 @@ class DashboardController extends Controller
 			    $reading->formattedValue .= '%';
 			    break;
 		    case "Wind Direction":
-			    // Switch for Direction
+			    switch($reading->value) {
+				    case 0:
+				    case 360:
+				    	$reading->formattedValue = 'North';
+				    	break;
+				    case 337.5:
+				        $reading->formattedValue = "North North West";
+				        break;
+				    case 315:
+				        $reading->formattedValue = "North West";
+				        break;
+				    case 292.5:
+				        $reading->formattedValue = "West North West";
+				        break;
+				    case 270:
+				        $reading->formattedValue = "West";
+				        break;
+				    case 247.5:
+				        $reading->formattedValue = "West South West";
+				        break;
+				    case 225:
+				        $reading->formattedValue = "South West";
+				        break;
+				    case 202.5:
+				        $reading->formattedValue = "South South West";
+				        break;
+				    case 180:
+				        $reading->formattedValue = "South";
+				        break;
+				    case 157.5:
+				        $reading->formattedValue = "South South East";
+				        break;
+				    case 135:
+				        $reading->formattedValue = "South East";
+				        break;
+				    case 112.5:
+				        $reading->formattedValue = "East South East";
+				        break;
+				    case 90:
+				        $reading->formattedValue = "East";
+				        break;
+				    case 67.5:
+				        $reading->formattedValue = "East North East";
+				        break;
+				    case 45:
+				        $reading->formattedValue = "North East";
+				        break;
+				    case 22.5:
+				        $reading->formattedValue = "North North East";
+				        break;
+			    }
 			    break;
 		    case "Rainfall":
 			    $reading->formattedValue .= ' in';
